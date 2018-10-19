@@ -1,17 +1,17 @@
 <template>
-    <div class="ind_surround">
-        <div class="ind_header">
-            <h3>在线电影院-简约版</h3>
-        </div>
-        <div class="ind_content">
-            <div class="ind_videoCont">
-                <div class="ind_item" v-for="(item,index) in videoData" :key="index" @click="goPlay(item)">
-                    <img :src="item.pic">
-                    <span>{{item.title}}</span>
-                </div>
-            </div>
-        </div>
+  <div class="ind_surround">
+    <div class="ind_header">
+      <!-- <h3>在线电影院-简约版</h3> -->
     </div>
+    <div class="ind_content">
+      <div class="ind_videoCont">
+        <div class="ind_item" v-for="(item,index) in videoData" :key="index" @click="goPlay(item)">
+          <img :src="item.pic">
+          <span>{{item.title}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -27,13 +27,21 @@ export default {
      * @description 初始化数据
      */
     initData() {
-      this.$http
-        .get("http://localhost:3000/video")
-        .then(result => {
-          console.log("------", result);
-          this.videoData = result.data.video;
-        })
-        .catch(error => {});
+      // this.$http
+      //   .get("http://localhost:3000/list")
+      //   .then(result => {
+      //     result.data.forEach((item, index) => {
+      //       if (index == 30) {
+      //         // item.playLink = JSON.parse(item.playLink);
+      //       }
+      //     });
+      //     // this.videoData = result.data.video;
+      //   })
+      //   .catch(error => {});
+      this.$get("list?add=123")
+      .then(result=>{
+        console.log(result);
+      })
     },
     /**
      * @description 跳转到播放页面
@@ -54,11 +62,11 @@ export default {
 .ind_surround {
   width: 100%;
   height: 100%;
-  .ind_header{
-      width:1200px;
-      height:100px;
-      line-height: 100px;
-      margin:0 auto;
+  .ind_header {
+    width: 1200px;
+    height: 100px;
+    line-height: 100px;
+    margin: 0 auto;
   }
   .ind_content {
     margin: 0 auto;
