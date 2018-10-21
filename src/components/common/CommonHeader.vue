@@ -12,22 +12,26 @@
           <div class="route_line"></div>
         </li>
         <li>
-          <router-link class="routerLink" to="/">Today Biu~</router-link>
+          <router-link class="routerLink" to="/">Welfare</router-link>
           <div class="route_line"></div>
         </li>
         <li>
-          <router-link class="routerLink" to="/">Video List</router-link>
+          <router-link class="routerLink" to="/">Blog</router-link>
+          <div class="route_line"></div>
+        </li>
+        <li>
+          <router-link class="routerLink" to="/">Today Biu~</router-link>
           <div class="route_line"></div>
         </li>
         <!-- <li><router-link to="/">Good Morning</router-link></li> -->
         <!-- <router-link><router-link to="/">Good Afternoon</router-link></router-link> -->
         <li>
-          <router-link class="routerLink" to="/story">Good Evening</router-link>
+          <router-link class="routerLink" to="/story">Morning</router-link>
           <div class="route_line"></div>
         </li>
       </ul>
       <div class="indh_search">
-        <input type="text" placeholder="点我搜索。BiuBiuBiu~">
+        <input type="text" placeholder="调皮的搜索框。BiuBiuBiu~">
         <button>搜你所想</button>
       </div>
     </div>
@@ -64,12 +68,12 @@ export default {
     ul {
       display: flex;
       flex: 1;
-      margin-left: 100px;
+      margin-left: 50px;
       align-items: center;
       font-size: 16px;
       li {
         position: relative;
-        width: 120px;
+        width: 100px;
         height: 80px;
         display: flex;
         flex-direction: column;

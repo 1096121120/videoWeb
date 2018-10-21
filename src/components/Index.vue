@@ -63,7 +63,8 @@ export default {
       .ind_item {
         width: 18%;
         height: 300px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         margin-bottom: 30px;
         margin-right: 20px;
         transition: all 0.3s;
@@ -73,10 +74,12 @@ export default {
         cursor: pointer;
         &:hover {
           transform: translateY(-10px);
+          box-shadow: 0 0 50px rgba(0, 0, 0, 0.3);
         }
         img {
           width: 100%;
           height: 90%;
+          border-radius: 10px 10px 0 0;
         }
         span {
           flex: 1;

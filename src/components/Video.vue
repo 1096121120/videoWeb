@@ -26,7 +26,8 @@ export default {
         video: {
           url: "",
           type: "auto"
-        }
+        },
+        autoplay: true
       },
       videoInfo: {}
     };
@@ -47,7 +48,16 @@ export default {
           .then(result => {
             result.playLink = JSON.parse(result.playLink);
             this.videoInfo = result;
-            this.initOptions();
+            let player = this.$refs.player.dp;
+            this.$set(
+              this.options.video,
+              "url",
+              this.videoInfo.playLink[0].videoSrcInfo[0].videoSrc
+            );
+            player.switchVideo({
+              url: this.options.video.url
+            });
+            player.play();
           })
           .catch(error => {});
       } else {
@@ -61,14 +71,15 @@ export default {
      * @description 初始化视频播放参数
      */
     initOptions() {
-      const player = this.$refs.player.dp;
+      /* const player = this.$refs.player.dp;
       this.$set(this.options.video,"url",this.videoInfo.playLink[0].videoSrcInfo[0].videoSrc)
       player.switchVideo(
         {
           url: this.options.video.url
         }
       );
-      player.play();
+      player.play(); */
+      this.options.video.url = this.videoInfo.playLink[0].videoSrcInfo[0].videoSrc;
       //可添加对当前视频点赞功能！！！！！！！！！！根据点赞数量进行排序   出10个销量好的
     }
   },
