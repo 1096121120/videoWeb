@@ -2,7 +2,7 @@ import axios from "axios";
 import { Message } from "element-ui";
 
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL ='http://192.168.1.100:3000/';
+axios.defaults.baseURL ='http://192.168.1.101:3000/';
 //http request 拦截器
 // axios.interceptors.request.use(
 //   config => {

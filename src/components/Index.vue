@@ -2,11 +2,28 @@
   <div class="ind_surround">
     <common-header></common-header>
     <div class="ind_content">
+      <div class="mobileSearch">
+        <div class="indh_search">
+          <input type="text" placeholder="调皮的搜索框。BiuBiuBiu~">
+          <button>搜你所想</button>
+        </div>
+      </div>
       <div class="ind_videoCont">
         <router-link class="ind_item" :to="{ name: 'Video', query: { vId: item.id }}" v-for="(item,index) in videoData" :key="index" @click.native="goPlay(item)">
           <img v-lazy="item.imagePic">
-          <span>{{item.name}}</span>
+          <p class="ind_name">{{item.name}}</p>
         </router-link>
+      </div>
+      <div class="paging">
+        <div class="paging_btn">
+          <button class="prev_page_btn">上一页</button>
+          <button class="next_page_btn">下一页</button>
+        </div>
+        <span>
+          第
+          <em> 1 </em>页 / 共
+          <i> 123 </i>页
+        </span>
       </div>
     </div>
   </div>
@@ -55,6 +72,42 @@ export default {
     margin: 50px auto 0;
     width: 1200px;
     height: 600px;
+    .mobileSearch {
+      display: none;
+      .indh_search {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        input {
+          width: 200px;
+          height: 38px;
+          background: #fff;
+          border: none;
+          outline: none;
+          border: 1px solid #e3e3e3;
+          border-right: none;
+          font-size: 14px;
+          text-indent: 20px;
+          color: #999999;
+          border-radius: 20px 0 0 20px;
+          float: left;
+          vertical-align: middle;
+        }
+        button {
+          width: 100px;
+          height: 40px;
+          outline: none;
+          border: none;
+          cursor: pointer;
+          color: #fff;
+          background-image: linear-gradient(135deg, #fab2ff 10%, #1904e5 100%);
+          border-radius: 0 20px 20px 0;
+          float: left;
+        }
+      }
+    }
     .ind_videoCont {
       width: 100%;
       display: flex;
@@ -81,11 +134,76 @@ export default {
           height: 90%;
           border-radius: 10px 10px 0 0;
         }
-        span {
+        .ind_name {
+          width: 100%;
           flex: 1;
-          display: flex;
-          align-items: center;
           font-size: 12px;
+          // padding: 10px 0 10px 5px;
+          padding-left:5px;
+          box-sizing: border-box;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          color: #333;
+        }
+      }
+    }
+    .paging {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .paging_btn {
+        button {
+          width: 120px;
+          height: 35px;
+          outline: none;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+          color: #fff;
+        }
+        .prev_page_btn {
+          margin-right: 10px;
+          background-image: linear-gradient(135deg, #ce9ffc 10%, #7367f0 100%);
+          transition: all 0.3s;
+          &:hover {
+            background-image: linear-gradient(
+              135deg,
+              #43cbff 10%,
+              #9708cc 100%
+            );
+          }
+        }
+        .next_page_btn {
+          margin-left: 10px;
+          background-image: linear-gradient(135deg, #43cbff 10%, #9708cc 100%);
+          transition: all 0.3s;
+          &:hover {
+            background-image: linear-gradient(
+              135deg,
+              #ce9ffc 10%,
+              #7367f0 100%
+            );
+          }
+        }
+      }
+      span {
+        margin-left: 50px;
+        em {
+          font-style: normal;
+          font-size: 18px;
+          background-image: linear-gradient(135deg, #fdd819 10%, #e80505 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        i {
+          background-image: linear-gradient(135deg, #fdd819 10%, #e80505 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-style: normal;
+          font-size: 16px;
         }
       }
     }
