@@ -57,7 +57,7 @@ export default {
      */
     initData() {
       this.$get("list").then(result => {
-        this.videoData = result;
+        this.videoData = result.data;
       });
     },
     /**
@@ -75,7 +75,7 @@ export default {
       this.nowPage = this.nowPage + 1;
       this.$get(`list?page=${this.nowPage}`).then(result => {
         // this.videoData = result;
-        that.newVideoData = result;
+        that.newVideoData = result.data;
         if (this.newVideoData.length !== 0) {
           this.videoData = this.$Tools.cloneObj(this.newVideoData);
           that.loading = false;
