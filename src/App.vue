@@ -10,9 +10,9 @@ export default {
 };
 </script>
 
-<style>
-@import "../static/css/common.css";
-@import "../static/css/media";
+<style lang="scss">
+@import "../static/css/common.scss";
+@import "../static/css/media.scss";
 #app {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   width: 100%;

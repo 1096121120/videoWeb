@@ -2,14 +2,14 @@
   <div class="ind_surround">
     <common-header></common-header>
     <div class="ind_other">
-      <div class="ind_content" v-loading="loading" element-loading-text="拼命加载中，冲鸭！！！" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.9)">
+      <div class="ind_content">
         <div class="mobileSearch">
           <div class="indh_search">
             <input type="text" placeholder="调皮的搜索框。BiuBiuBiu~">
             <button>搜你所想</button>
           </div>
         </div>
-        <div class="ind_videoCont">
+        <div class="ind_videoCont" v-loading="loading" element-loading-text="拼命加载中，冲鸭！！！" element-loading-spinner="el-icon-loading" element-loading-background="rgba(0, 0, 0, 0.9)">
           <router-link class="ind_item" :to="{ name: 'Video', query: { vId: item.id }}" v-for="(item,index) in videoData" :key="index" @click.native="goPlay(item)">
             <img :src="item.imagePic">
             <p class="ind_name">{{item.name}}</p>
@@ -22,8 +22,8 @@
           </div>
           <span>
             第
-            <em> 1 </em>页 / 共
-            <i> 123 </i>页
+            <em> {{nowPage}} </em>页 / 共
+            <i> {{allPage}} </i>页
           </span>
         </div>
       </div>
@@ -41,7 +41,7 @@ export default {
     return {
       videoData: [],
       nowPage: 1,
-      allPage: 127,
+      allPage: 0,
       loading: false,
       newVideoData: []
     };
@@ -56,9 +56,14 @@ export default {
      * @description 初始化数据
      */
     initData() {
+      this.loading = true;
       this.$get("list").then(result => {
         this.videoData = result.data;
+        this.loading = false;
       });
+      this.$get("list/count").then(result=>{
+        this.allPage = Math.ceil(result.data.count / 18);
+      })
     },
     /**
      * @description 向vuex中添加当前点击视频详情
@@ -73,19 +78,47 @@ export default {
       let that = this;
       this.loading = true;
       this.nowPage = this.nowPage + 1;
-      this.$get(`list?page=${this.nowPage}`).then(result => {
-        // this.videoData = result;
-        that.newVideoData = result.data;
-        if (this.newVideoData.length !== 0) {
-          this.videoData = this.$Tools.cloneObj(this.newVideoData);
-          that.loading = false;
-        }
-      });
+      if (this.nowPage>this.allPage) {
+        this.nowPage = this.allPage;
+        this.$message({
+          type: "warning",
+          message: "已经是最后一页了呢！怎么傻fufu的？"
+        });
+        this.loading = false;
+        return;
+      }
+      this.fetchData();
     },
     /**
      * @description 上一页
      */
-    prevPage() {}
+    prevPage() {
+      let that = this;
+      this.loading = true;
+      this.nowPage = this.nowPage - 1;
+      if (this.nowPage < 1) {
+        this.nowPage = 1;
+        this.$message({
+          type: "warning",
+          message: "已经是第一页了呢！怎么傻fufu的？"
+        });
+        this.loading = false;
+        return;
+      }
+      this.fetchData();
+    },
+    /**
+     *@description 请求数据封装
+     */
+    fetchData() {
+      this.$get(`list?page=${this.nowPage}`).then(result => {
+        this.newVideoData = result.data;
+        if (this.newVideoData.length !== 0) {
+          this.videoData = this.$Tools.cloneObj(this.newVideoData);
+          this.loading = false;
+        }
+      });
+    }
   },
   created() {
     this.initData();
@@ -98,6 +131,7 @@ export default {
   height: 100%;
   .ind_other {
     width: 100%;
+    flex: 1;
     .ind_content {
       margin: 50px auto 0;
       width: 1200px;
@@ -182,7 +216,7 @@ export default {
       }
       .paging {
         width: 100%;
-        height: 50px;
+        padding: 20px 0;
         display: flex;
         justify-content: center;
         align-items: center;

@@ -1,0 +1,108 @@
+/**
+ * 移动端媒体查询
+ */
+
+@media screen and (max-width: 812px) {
+    /*导航*/
+    .ind_surround {
+        display: flex;
+        flex-direction: column;
+    }
+    .ind_header {
+        height: 50px !important;
+        .indh_headerCon .logo {
+            display: none;
+        }
+        .indh_headerCon {
+            width: 100% !important;
+            height: 50px !important;
+        }
+        .indh_headerCon ul {
+            margin-left: 0 !important;
+            width: 100%;
+            overflow-x: scroll;
+        }
+        .indh_headerCon ul li {
+            padding: 0 !important;
+            height: 50px !important;
+            line-height: 50px !important;
+        }
+        .indh_headerCon ul li a {
+            width: 90px !important;
+        }
+        .indh_headerCon .indh_search {
+            display: none;
+        }
+    }
+    /*视频*/
+    .ind_content {
+        width: 100% !important;
+        flex: 1;
+        overflow-y: auto;
+        margin: 0 auto !important;
+        .ind_videoCont {
+            justify-content: space-around;
+        }
+        .ind_videoCont a {
+            width: 30% !important;
+            margin-right: 0 !important;
+            height: auto !important;
+        }
+        .mobileSearch {
+            display: block !important;
+        }
+        .paging {
+            flex-direction: column;
+            height: auto;
+            .prev_page_btn {
+                margin-right: 5px !important;
+            }
+            .next_page_btn {
+                margin-left: 5px !important;
+            }
+            span {
+                margin-left: 0 !important;
+                margin-top: 10px;
+            }
+        }
+    }
+    /**底部 */
+    .cof_surround {
+        .cof_interlink {
+            width: 100% !important;
+            height: auto;
+            h3 {
+                padding-left: 10px;
+                box-sizing: border-box;
+                background-image: linear-gradient( 135deg, #FAB2FF 10%, #1904E5 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        .cof_interlink .cof_friendLink {
+            width: 100% !important;
+            display: flex;
+            flex-wrap: wrap;
+            background: #313131 !important;
+            padding: 0 10px;
+            box-sizing: border-box;
+            height: auto;
+            li {
+                width: 20% !important;
+                height: 30px;
+                padding: 0 !important;
+                line-height: 30px;
+                background-image: linear-gradient( 135deg, #FD6E6A 10%, #FFC600 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+        .cof_companyinfo {
+            width: 100% !important;
+            p {
+                padding: 0 10px;
+                line-height: 24px;
+            }
+        }
+    }
+}
